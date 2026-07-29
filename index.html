@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torre de Controle - Rastreamento</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="header">
+            <div class="header-titles">
+                <div class="title-wrapper">
+                    <div class="live-dot"></div>
+                    <h1>Torre de Controle</h1>
+                </div>
+                <p>Monitoramento de Eventos, Deduplicação e Payloads em Tempo Real</p>
+            </div>
+            <button class="refresh-btn" id="refresh-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                  <path d="M3 3v5h5"/>
+                </svg>
+                Atualizar
+            </button>
+        </header>
+
+        <div class="table-card">
+            <table class="events-table">
+                <thead>
+                    <tr>
+                        <th>Data/Hora</th>
+                        <th>Nome do Evento</th>
+                        <th>Event ID</th>
+                        <th>Visitante ID</th>
+                        <th>Origem (UTM)</th>
+                        <th>Meta CAPI</th>
+                        <th>GA4 MP</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="events-body">
+                    <!-- Events will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal for Event Details -->
+    <div class="modal-overlay" id="event-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2 id="modal-event-title" class="text-green">>_ Detalhes do Evento: PageView</h2>
+                    <p id="modal-event-id" style="color: var(--text-secondary); font-size: 0.875rem; margin-top: 0.25rem;">Event ID: ...</p>
+                </div>
+                <button class="close-btn" id="close-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Data e Hora</label>
+                        <span id="modal-date"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>ID do Visitante</label>
+                        <span id="modal-visitor-id" class="text-green"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>Origem (UTM)</label>
+                        <span id="modal-utm"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>Origem do Tráfego</label>
+                        <span>n/a</span>
+                    </div>
+                </div>
+
+                <div class="payload-section">
+                    <div class="payload-header">
+                        <h3 class="text-green" style="font-weight: 600;">META CONVERSIONS API (CAPI)</h3>
+                        <span class="status-badge success" id="modal-meta-status">SUCESSO</span>
+                    </div>
+                    <div class="code-grid-2col">
+                        <div class="code-block">
+                            <label>Payload Enviado</label>
+                            <pre><code id="modal-meta-payload"></code></pre>
+                        </div>
+                        <div class="code-block">
+                            <label>Resposta do Servidor (Meta)</label>
+                            <pre><code id="modal-meta-response"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payload-section" style="margin-top: 1.5rem;">
+                    <div class="payload-header">
+                        <h3 style="color: #60a5fa; font-weight: 600;">GA4 MEASUREMENT PROTOCOL</h3>
+                        <span class="status-badge pending" id="modal-ga4-status">NÃO ENVIADO</span>
+                    </div>
+                    <div class="code-grid-2col">
+                        <div class="code-block">
+                            <label>Payload Enviado</label>
+                            <pre><code style="color: var(--text-secondary);">// Não enviado</code></pre>
+                        </div>
+                        <div class="code-block">
+                            <label>Resposta do Servidor (GA4)</label>
+                            <pre><code style="color: var(--text-secondary);">// Sem resposta (204 No Content no sucesso)</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
