@@ -74,6 +74,46 @@ body {
     letter-spacing: 0.025em;
 }
 
+.nav-links {
+    display: flex;
+    gap: 0.5rem;
+    background-color: var(--surface);
+    padding: 0.25rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    margin-right: auto;
+    margin-left: 2rem;
+}
+
+.nav-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.nav-btn:hover {
+    color: var(--text-primary);
+}
+
+.nav-btn.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 1rem;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 .refresh-btn {
     background-color: var(--bg-card);
     border: 1px solid var(--border);
@@ -109,24 +149,86 @@ body {
 
 .events-table th {
     background-color: var(--bg-dark);
-    padding: 1rem;
     font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+}
+
+/* --- Novos Estilos: Dashboard Financeiro --- */
+
+.date-filters {
+    display: flex;
+    gap: 0.5rem;
+    background-color: var(--surface);
+    padding: 0.25rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    margin-right: 1rem;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
     color: var(--text-secondary);
-    font-weight: 600;
-    border-bottom: 1px solid var(--border);
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-.events-table td {
-    padding: 1rem;
+.filter-btn:hover {
+    color: var(--text-primary);
+}
+
+.filter-btn.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.kpi-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.kpi-card h3 {
     font-size: 0.875rem;
-    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-weight: 500;
 }
 
-.events-table tbody tr:hover {
-    background-color: var(--bg-hover);
+.kpi-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: 'Fira Code', monospace;
+    letter-spacing: -0.05em;
 }
+
+.text-green { color: var(--success) !important; }
+.text-red { color: var(--danger) !important; }
+
+@media (max-width: 1024px) {
+    .header { flex-wrap: wrap; }
+    .date-filters { margin-left: auto; order: 2; margin-top: 1rem; }
+}
+
+/* ------------------------------------------- */
 
 .badge {
     padding: 0.25rem 0.5rem;
