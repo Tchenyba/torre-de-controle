@@ -147,6 +147,12 @@ body {
     text-align: left;
 }
 
+.events-table th, .events-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
 .events-table th {
     background-color: var(--bg-dark);
     font-size: 0.75rem;
@@ -154,6 +160,14 @@ body {
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+}
+
+.events-table td {
+    font-size: 0.875rem;
+}
+
+.events-table tbody tr:hover {
+    background-color: var(--bg-hover);
 }
 
 /* --- Novos Estilos: Dashboard Financeiro --- */
